@@ -84,6 +84,7 @@ mat-card-subtitle {
   margin: 0.5rem 0 0.5rem 0;
   -webkit-box-orient: vertical;
   color: #ffd740;
+  @apply text-lg;
 }
 mat-card > img {
   height: 400px;
