@@ -1,0 +1,62 @@
+<!-- Component Code -->
+<div class="back-button">
+  <button
+    class="p-3 rounded-2xl mt-3"
+    color="accent"
+    mat-raised-button
+    routerLink="/"
+  >
+    Back to listing
+  </button>
+</div>
+<div class="blog-list-container">
+  <div class="left-div mat-elevation-z8">
+    <img src="{{ blogData.imgSource }}" alt="image not found!!" />
+  </div>
+  <div class="right-div">
+    <div class="grid grid-cols-12 gap-2">
+      <div class="col-span-12">
+        <mat-card class="mat-elevation-z8">
+          <mat-card-content>
+            <mat-card-title
+              ><span class="cards-title">Title: </span
+              ><span class="list-content">{{
+                blogData.title
+              }}</span></mat-card-title
+            >
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-span-12">
+        <mat-card class="mat-elevation-z8">
+          <mat-card-content>
+            <mat-card-title
+              ><span class="cards-title">Tags: </span></mat-card-title
+            >
+            <mat-list *ngFor="let item of blogData.tags.split(','); index as i">
+              <mat-list-item
+                ><span class="list-index">{{ i }}.</span
+                ><span class="list-content">{{
+                  item.replaceAll("'", "") | titlecase
+                }}</span></mat-list-item
+              >
+              <mat-divider></mat-divider>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-span-12">
+        <mat-card class="mat-elevation-z8">
+          <mat-card-content>
+            <mat-card-title
+              ><span class="cards-title">Description: </span></mat-card-title
+            >
+            <mat-card-header class="text-lg text-white">
+              <span [innerHtml]="blogData.description"> </span>
+            </mat-card-header>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

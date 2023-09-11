@@ -1,0 +1,67 @@
+/* .left-div {
+  height: calc(100vh-20vh);
+}
+img {
+  height: 100%;
+  width: 100%;
+}
+:host {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+} */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .blog-list-container {
+    @apply grid sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-5 p-5;
+    min-height: calc(100vh - 114px);
+  }
+  .left-div {
+    background-color: black;
+    box-shadow: rgba(255, 255, 255, 0.479) 0px 12px 28px 0px,
+      rgba(255, 255, 255, 0.479) 0px 2px 4px 0px,
+      rgba(255, 255, 255, 0.479) 0px 0px 0px 1px inset;
+    padding: 1rem;
+    max-height: 800px;
+    @apply col-span-12 lg:col-span-7 xl:col-span-7 md:col-span-12 sm:col-span-12 rounded-3xl flex justify-center;
+  }
+  .right-div {
+    @apply col-span-12 xl:col-span-5 lg:col-span-5 md:col-span-12 sm:col-span-12;
+  }
+  .left-div > img {
+    height: 100%;
+    @apply rounded-3xl;
+  }
+
+  mat-card {
+    @apply rounded-3xl;
+    background-color: black;
+    box-shadow: rgba(255, 255, 255, 0.479) 0px 12px 28px 0px,
+      rgba(255, 255, 255, 0.479) 0px 2px 4px 0px,
+      rgba(255, 255, 255, 0.479) 0px 0px 0px 1px inset;
+  }
+  .back-button {
+    @apply flex justify-start p-5;
+  }
+  .list-content {
+    @apply text-white;
+  }
+}
+.list-index {
+  color: #ffd740;
+}
+.cards-title {
+  color: #ffd740;
+}
+
+@media (max-width: 500px) {
+  .back-button {
+    @apply p-5;
+  }
+  .blog-list-container {
+    @apply p-5;
+  }
+}

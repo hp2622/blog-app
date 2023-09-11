@@ -1,0 +1,49 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.box .row.header {
+  flex: 0 1 auto;
+}
+.box .row.content {
+  flex: 1 1 auto;
+}
+.box .row.footer {
+  flex: 0 1 40px;
+}
+mat-sidenav {
+  width: 280px;
+}
+mat-sidenav-content {
+  background-color: #0a0a0a;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(5px);
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+mat-toolbar {
+  @apply ps-12 pe-12;
+}
+@media (max-width: 600px) {
+  mat-toolbar {
+    @apply ps-4 pe-4;
+  }
+}
+.bg-color {
+  background-color: #302f2e;
+}
+.nav-links {
+  color: white !important;
+}

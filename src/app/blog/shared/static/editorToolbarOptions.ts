@@ -1,0 +1,17 @@
+export const options = [
+  'undo',
+  'redo',
+  '|',
+  'heading',
+  '|',
+  'bold',
+  'italic',
+  '|',
+  'link',
+  'blockQuote',
+  '|',
+  'bulletedList',
+  'numberedList',
+  'outdent',
+  'indent',
+];

@@ -1,0 +1,55 @@
+<div class="box">
+  <div class="row header">
+    <mat-toolbar
+      color="primary"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxShow="true" fxHide.gt-sm="true">
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+        <a mat-button class="companyName" routerLink="/">
+          <span>BlogSpot.com</span>
+        </a>
+      </div>
+
+      <div fxShow="true" fxHide.lt-md="true">
+        <a
+          *ngFor="let link of navLinks"
+          mat-button
+          routerLink="{{ link.link }}"
+          >{{ link.title }}</a
+        >
+      </div>
+    </mat-toolbar>
+  </div>
+  <div class="row content">
+    <mat-sidenav-container class="example-container">
+      <mat-sidenav
+        class="bg-color"
+        #sidenav
+        fxLayout="column"
+        mode="over"
+        opened="false"
+        fxHide.gt-sm="true"
+      >
+        <div fxLayout="column">
+          <a
+            class="nav-links"
+            *ngFor="let link of navLinks"
+            mat-button
+            routerLink="{{ link.link }}"
+            >{{ link.title }}</a
+          >
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  <div class="row footer">
+    <app-footer></app-footer>
+  </div>
+</div>

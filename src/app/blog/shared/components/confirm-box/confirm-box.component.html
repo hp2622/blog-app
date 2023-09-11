@@ -1,0 +1,26 @@
+<mat-card class="bg-white p-6 w-full">
+  <mat-card-header>
+    <mat-card-title>{{ data.message }}</mat-card-title>
+    <button class="absolute top-3 right-3" (click)="closeDialog()">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </mat-card-header>
+
+  <mat-card-actions class="flex gap-4 justify-end">
+    <button
+      class="text-black bg-green-500 text-lg"
+      mat-raised-button
+      [mat-dialog-close]="false"
+    >
+      no
+    </button>
+    <button
+      class="text-black bg-red-600 border-1 border-black text-lg"
+      mat-raised-button
+      color="warn"
+      [mat-dialog-close]="true"
+    >
+      yes
+    </button>
+  </mat-card-actions>
+</mat-card>

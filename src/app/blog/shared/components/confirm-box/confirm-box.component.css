@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+mat-card {
+  @apply rounded-xl;
+  transition: ease-in 0.5s;
+}
+/* :host {
+  position: absolute;
+  z-index: 11;
+  top: 0;
+} */

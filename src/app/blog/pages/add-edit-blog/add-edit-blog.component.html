@@ -1,0 +1,146 @@
+<div class="form">
+  <div class="col-span-12 h-full">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Blog Detail Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="add-blog-form" [formGroup]="BlogForm">
+          <!-- title container start -->
+          <div class="form-fields">
+            <mat-form-field class="w-full" appearance="outline">
+              <mat-label>Title</mat-label>
+              <input formControlName="title" type="text" matInput />
+              <mat-error>{{ getTitleError() }}</mat-error>
+            </mat-form-field>
+          </div>
+          <!-- title container end -->
+          <div class="form-fields">
+            <!-- tags container start -->
+            <mat-form-field appearance="outline">
+              <mat-label>Tags</mat-label>
+              <mat-select formControlName="tags" multiple>
+                <mat-option *ngFor="let tag of dropdownData" [value]="tag">{{
+                  tag
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>New tag you want to be add</mat-label>
+              <input formControlName="tagsToBeAdd" type="text" matInput />
+              <button
+                class="me-3 new-tag-add-btn"
+                matSuffix
+                mat-raised-button
+                color="accent"
+                (click)="addNewTag()"
+              >
+                Add
+              </button>
+            </mat-form-field>
+            <!-- tags container end -->
+          </div>
+          <div class="form-fields">
+            <!-- description container start -->
+            <div class="margin-ck">
+              <ckeditor
+                [config]="editorConfig"
+                formControlName="description"
+                [editor]="Editor"
+                style="color: black"
+                (ready)="onReady($event)"
+              ></ckeditor>
+              <mat-error
+                *ngIf="Description.touched && Description.hasError('required')"
+                >{{ getDescriptionError() }}</mat-error
+              >
+            </div>
+            <!-- description container end -->
+
+            <!-- image container start -->
+            <div class="img-input-container">
+              <h1 class="image-title">Image</h1>
+              <div class="w-full">
+                <div
+                  matRipple
+                  matRippleColor="primary"
+                  class="dropzone-wrapper"
+                >
+                  <div class="dropzone-desc">
+                    <p>Choose an image file or drag it here.</p>
+                    <p>Upload your blog's image here.</p>
+                  </div>
+
+                  <input
+                    type="file"
+                    class="dropzone"
+                    formControlName="image"
+                    (change)="onFileChangeForImage($event)"
+                    formControlName="image"
+                    accept="image/png,image/jpeg,image/jpg"
+                  />
+                </div>
+                <div>
+                  <div>
+                    <ng-container *ngFor="let url of image; index as i">
+                      <p
+                        alt="Img"
+                        style="width: 30%; height: 30%; position: relative"
+                      >
+                        <img
+                          [src]="url"
+                          style="margin: 3px"
+                          class="w-full h-full"
+                        />
+
+                        <button
+                          [id]="i"
+                          mat-fab
+                          style="position: absolute"
+                          class="top-0 left-3 cancel-button-width-height"
+                          color="warn"
+                          aria-label="Example icon button with a home icon"
+                          (click)="deleteImageFromArray(i)"
+                        >
+                          <mat-icon>cancel</mat-icon>
+                        </button>
+                      </p>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <mat-error *ngIf="imageArrayDataExist == false">{{
+                getImageError()
+              }}</mat-error>
+              <mat-hint
+                >file size must be less than 400kb and only(.jpeg,.jpg,.png)
+                files are allowed</mat-hint
+              >
+            </div>
+            <!-- image container end -->
+          </div>
+
+          <div class="action-button">
+            <button
+              #submitBtn
+              [disabled]="imageArrayDataExist == false || BlogForm.invalid"
+              color="primary"
+              mat-raised-button
+              (click)="AddUpdateBlog()"
+            >
+              Submit
+            </button>
+            <button
+              color="accent"
+              mat-raised-button
+              (click)="BlogForm.reset(); image = []"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<!-- search bar and add blog button  -->
+
+<div class="bg-color-search-add-container">
+  <div class="search-box">
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Search Blogs</mat-label>
+      <input matInput #searchField (keyup)="search(searchField.value)" />
+      <button mat-icon-button matSuffix>
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="btn-add-blog">
+    <button
+      class="add-blog-btn"
+      fxShow="true"
+      fxHide.lt-md="true"
+      mat-raised-button
+      color="primary"
+      routerLink="add"
+    >
+      Add blog
+    </button>
+    <button
+      fxShow="true"
+      fxHide.gt-sm="true"
+      mat-mini-fab
+      color="primary"
+      routerLink="add"
+      class="Add-blog-btn-icon"
+    >
+      <mat-icon color="accent">add</mat-icon>
+    </button>
+  </div>
+</div>
+
+<!-- blog card division -->
+<div class="content">
+  <!--no data found card start  -->
+  <mat-card
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    *ngIf="dataSource.filteredData.length == 0"
+  >
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>No Data Found</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+  <!--no data found card end  -->
+
+  <!-- blog card start -->
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="16px grid"
+    style="height: auto !important"
+  >
+    <div
+      fxFlexFill
+      fxFlex="25%"
+      fxFlex.xs="100%"
+      fxFlex.sm="50%"
+      fxFlex.md="33%"
+      fxFlex.lt-md="50%"
+      fxFlex.lg="25%"
+      *ngFor="let card of cardObservableData | async"
+    >
+      <mat-card class="mat-elevation-z8" fxFlexFill>
+        <mat-card-header>
+          <mat-card-title>{{ card.title }} </mat-card-title>
+          <mat-card-subtitle>{{ card.tags }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="{{ card.imgSource }}"
+          alt="Photo of a Shiba Inu"
+        />
+        <mat-card-content>
+          <p [innerHtml]="card.description"></p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="accent" routerLink="details/{{ card.id }}">
+            View Blog
+          </button>
+          <div fxLayout="row" fxLayoutGap="5px">
+            <button mat-mini-fab color="accent" routerLink="edit/{{ card.id }}">
+              <mat-icon color="primary">edit</mat-icon>
+            </button>
+            <button
+              mat-mini-fab
+              color="accent"
+              aria-label="Example icon button with a delete icon"
+              (click)="deleteBlog(card.id)"
+            >
+              <mat-icon color="primary">delete</mat-icon>
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <!--blog card end -->
+</div>
+
+<!-- pagination -->
+<div *ngIf="dataSource.filteredData.length != 0">
+  <mat-paginator [pageSizeOptions]="[6, 12, 18, 96]"> </mat-paginator>
+</div>
